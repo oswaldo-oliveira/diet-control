@@ -1,0 +1,30 @@
+{
+  "name": "diet-control",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/server.ts",
+    "build": "bun build src/server.ts",
+    "start": "NODE_ENV=production bun src/http/server.ts",
+    "migrate": "bun prisma migrate dev",
+    "generate": "bun prisma generate",
+    "studio": "bun prisma studio",
+    "test": "bun test",
+    "lint": "eslint --fix src --ext ts"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/bun": "latest",
+    "eslint": "^8.57.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/jwt": "^1.0.2",
+    "@prisma/client": "^5.11.0",
+    "elysia": "^1.0.7",
+    "prisma": "^5.11.0",
+    "zod": "^3.22.4"
+  }
+}
