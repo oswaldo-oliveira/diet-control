@@ -8,6 +8,7 @@ import { getFoodsController } from './http/controllers/get-foods-controller'
 import { getFoodByIdController } from './http/controllers/get-food-by-id-controller'
 import { updateFoodController } from './http/controllers/update-food-controller'
 import { deleteFoodController } from './http/controllers/delete-food-controller'
+import { getMetricsController } from './http/controllers/get-metrics-controller'
 
 const app = new Elysia()
   .use(registerUserController)
@@ -17,6 +18,7 @@ const app = new Elysia()
   .use(getFoodByIdController)
   .use(updateFoodController)
   .use(deleteFoodController)
+  .use(getMetricsController)
   .error({
     BAD_REQUEST: UserAlreadyExistsError,
     NOT_FOUND: ResourceNotFoundError,
