@@ -5,6 +5,6 @@ export interface FoodsRepository {
   findById(id: string): Promise<Food | null>
   findMany(page: number, userId: string): Promise<Food[]>
   findAll(userId: string): Promise<Food[]>
-  updateById(id: string, data: Prisma.FoodUpdateInput): Promise<Food>
+  save(data: Food): Promise<void>
   deleteById(id: string): Promise<void>
 }

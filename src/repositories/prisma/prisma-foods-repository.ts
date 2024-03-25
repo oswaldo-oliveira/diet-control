@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client'
+import type { Food, Prisma } from '@prisma/client'
 import { prisma } from '../../libs/prisma'
 import type { FoodsRepository } from '../foods-repository'
 
@@ -41,18 +41,29 @@ export class PrismaFoodsRepository implements FoodsRepository {
     return foods
   }
 
-  async updateById(id: string, data: Prisma.FoodUpdateInput) {
-    const food = await prisma.food.update({
-      where: { id },
+  async save(food: Food) {
+    const data = this.toPrisma(food)
+
+    await prisma.food.update({
+      where: { id: data.id },
       data,
     })
-
-    return food
   }
 
   async deleteById(id: string) {
     await prisma.food.delete({
       where: { id },
     })
+  }
+
+  private toPrisma(food: Food): Prisma.FoodUncheckedCreateInput {
+    return {
+      id: food.id,
+      name: food.name,
+      description: food.description,
+      date: food.date,
+      isDiet: food.isDiet,
+      userId: food.userId,
+    }
   }
 }

@@ -5,7 +5,7 @@ interface UpdateFoodRequest {
   foodId: string
   name?: string
   description?: string
-  date?: number | bigint
+  date?: number
   isDiet?: boolean
   userId: string
 }
@@ -31,11 +31,11 @@ export class UpdateFoodService {
       throw new ResourceNotFoundError()
     }
 
-    await this.foodsRepository.updateById(foodId, {
-      name,
-      description,
-      date,
-      isDiet,
-    })
+    food.name = name ?? food.name
+    food.description = description ?? food.description
+    food.date = date ?? food.date
+    food.isDiet = isDiet ?? food.isDiet
+
+    await this.foodsRepository.save(food)
   }
 }
