@@ -22,8 +22,20 @@ export class PrismaFoodsRepository implements FoodsRepository {
       where: {
         userId,
       },
+      orderBy: { date: 'desc' },
       take: 20,
       skip: (page - 1) * 20,
+    })
+
+    return foods
+  }
+
+  async findAll(userId: string) {
+    const foods = await prisma.food.findMany({
+      where: {
+        userId,
+      },
+      orderBy: { date: 'desc' },
     })
 
     return foods
