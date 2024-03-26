@@ -3,7 +3,7 @@ import type { FoodsRepository } from '../repositories/foods-repository'
 interface RegisterFoodRequest {
   name: string
   description: string
-  date: number | bigint
+  date: number
   isDiet: boolean
   userId: string
 }
